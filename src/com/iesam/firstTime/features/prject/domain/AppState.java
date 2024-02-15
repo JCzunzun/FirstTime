@@ -1,0 +1,5 @@
+package com.iesam.firstTime.features.prject.domain;
+
+public class AppState {
+    private boolean firstTime;
+}
