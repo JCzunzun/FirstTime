@@ -66,5 +66,20 @@ public class AppStateDataRepository {
             e.printStackTrace();
         }
     }
+    public void deleteConfigFile() {
+        try {
+            if (configFile.exists()) {
+                if (configFile.delete()) {
+                    System.out.println("El archivo config.properties ha sido eliminado correctamente.");
+                } else {
+                    System.out.println("No se pudo eliminar el archivo config.properties.");
+                }
+            } else {
+                System.out.println("El archivo config.properties no existe.");
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
