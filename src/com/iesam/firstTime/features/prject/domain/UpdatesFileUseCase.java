@@ -13,9 +13,6 @@ public class UpdatesFileUseCase {
     public void Delete(String name){
         appStateDataRepository.deleteFile(name);
     }
-    public void saveFile(File name){
-         appStateDataRepository.saveFile(name);
-    }
     public void update(File file){
         appStateDataRepository.update(file);
     }
