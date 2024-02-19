@@ -9,6 +9,8 @@ private AppStateDataRepository appStateDataRepository;
         this.appStateDataRepository = appStateDataRepository;
     }
     public boolean isFirstTime(){
+
         return appStateDataRepository.isFirstTime();
     }
+
 }

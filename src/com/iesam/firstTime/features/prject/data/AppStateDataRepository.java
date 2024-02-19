@@ -6,25 +6,25 @@ import java.io.IOException;
 import java.util.Properties;
 public class AppStateDataRepository {
     private static AppStateDataRepository instance= null;
-    private static final String CONFIG_FILE="config.properties";
-    private static final String FIRST_TIME="first_time";
-    private static final String OPEN_COUNT = "open_count";
+    private static final String config_File="config.properties";
+    private static final String first_Time="first_time";
+    private static final String open_Count = "open_count";
     private Properties properties;
     private File configFile;
     private AppStateDataRepository(){
         properties = new Properties();
-        configFile= new File(CONFIG_FILE);
+        configFile= new File(config_File);
     }
     public boolean isFirstTime(){
         try(FileInputStream fileInputStream= new FileInputStream(configFile)){
             properties.load(fileInputStream);
-            return !properties.containsKey(FIRST_TIME);
+            return !properties.containsKey(first_Time);
         } catch (IOException e) {
             return true;
         }
     }
     public void markAsNotFirstTime(){
-        properties.setProperty(FIRST_TIME, "false");
+        properties.setProperty(first_Time, "false");
         try (FileOutputStream fileOutputStream = new FileOutputStream(configFile)) {
             properties.store(fileOutputStream, "Application configuration");
         } catch (IOException e) {
@@ -40,7 +40,7 @@ public class AppStateDataRepository {
     public int getOpenCount() {
         try (FileInputStream fileInputStream = new FileInputStream(configFile)) {
             properties.load(fileInputStream);
-            String openCountStr = properties.getProperty(OPEN_COUNT, "0");
+            String openCountStr = properties.getProperty(open_Count, "0");
             return Integer.parseInt(openCountStr);
         } catch (IOException e) {
             e.printStackTrace();
@@ -49,7 +49,7 @@ public class AppStateDataRepository {
     }
     public void incrementCounter() {
         int counter = getOpenCount();
-        properties.setProperty(OPEN_COUNT, String.valueOf(counter + 1));
+        properties.setProperty(open_Count, String.valueOf(counter + 1));
         try (FileOutputStream fileOutputStream = new FileOutputStream(configFile)) {
             properties.store(fileOutputStream, "Application configuration");
         } catch (IOException e) {
@@ -59,7 +59,7 @@ public class AppStateDataRepository {
 
     public void incrementOpenCount() {
         int currentCount = getOpenCount();
-        properties.setProperty(OPEN_COUNT, String.valueOf(currentCount + 1));
+        properties.setProperty(open_Count, String.valueOf(currentCount + 1));
         try (FileOutputStream fileOutputStream = new FileOutputStream(configFile)) {
             properties.store(fileOutputStream, "Application configuration");
         } catch (IOException e) {

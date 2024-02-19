@@ -17,15 +17,15 @@ public class AppMain {
         DeleteFileUseCase deleteFileUseCase= new DeleteFileUseCase(appStateDataRepository);
 
         // Verificar si es la primera vez
-        if (checkFirstTimeUseCase.isFirstTime()) {
+       /* if (checkFirstTimeUseCase.isFirstTime()) {
             System.out.println("Primera vez");
             // Marcar como no siendo la primera vez
             markAsNotFirstTimeUseCase.markAsNoFirstTime();
         } else {
             System.out.println("No es la primera vez");
-        }
+        }*/
         // Incrementar el contador
-        appStateDataRepository.incrementCounter();
+        appStateDataRepository.incrementOpenCount();
         int counter = appStateDataRepository.getOpenCount();
 
         // Verificar si se debe mostrar el mensaje de votación
